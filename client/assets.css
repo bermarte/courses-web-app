@@ -25,7 +25,16 @@ body{
 .row-resize{
     min-height: 400px;
 }
+.round{
+    border-radius: 35px; 
+}
+.btn-p{
+    padding: 8px 120px;
+}
 .footer{
     background-color: #F1C85C;
     min-height: 114px;
+}
+.empty{
+    width: 160px;
 }
