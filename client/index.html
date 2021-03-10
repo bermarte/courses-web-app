@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <title>courses web-app</title>
 
+  <!-- BOOTSTRAP THEME -->
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./assets.css">
 
   <script type="module">
     import { init } from './app/init.js'
@@ -14,6 +16,49 @@
 </head>
 
 <body>
+  <div class="container main-container mx-auto">
+
+  <!-- header -->
+  <div class="container mr-3 ml-3">
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link active" href="https://hackyourfuture.be/" target="_blank">
+          <img src="./assets/hyf.svg" alt="HYF" width="60px">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- jumbotron -->
+  <div class="jumbotron bg-cover jumbotron-resize d-flex align-items-center justify-content-center">
+    <div class="container text-white"> 
+      <h1 class="display-3 m-6 text-left">"An investment in knowledge always pays the best interest."</h1>
+      <div class="m-6 text-right quote-m"> - Benjamin Franklin</div>
+
+      <div class="container d-flex justify-content-center">
+        <button type="button" class="btn btn-primary btn-lg pl-5 pr-5">Course List</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- new item content -->
+  <div class="container" id="new"></div>
+
+  <!-- items -->
+  <container id="items"></container>
+
+  <!-- footer -->
+  <footer class="footer text-center d-flex align-items-center justify-content-center">
+    <!-- Copyright -->
+    <div class="text-center">
+      © 2020 Copyright
+    </div>
+    <div id="group"></div>
+    <div id="github"></div>
+  </footer>
+
+</div>
+
 
 </body>
 
