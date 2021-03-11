@@ -42,7 +42,7 @@
     </div>
 
     <!-- new item content -->
-    <div class="container" id="new">
+    <div class="container mb-5 mt-5" id="new">
       <div class="d-flex row">
         <!-- left -->
         <div class=" borderless col w-50">
@@ -53,16 +53,17 @@
           <h2 class="text-center text-primary"">Add new course</h2>
           <form>  
             <!-- input -->
-            <!-- input -->
             <div class="form-outline mb-1">
               <input type="text" id="name" class="form-control" placeholder="course name" />
               <label class="form-label" for="name"></label>
             </div>
 
-            <div class="form-outline mb-1">
+            <!-- hide id field
+               <div class="form-outline mb-1">
               <input type="text" id="id" class="form-control" placeholder="course id" />
               <label class="form-label" for="id"></label>
             </div>
+            -->
 
             <!-- input -->
             <div class="form-outline mb-1">
@@ -79,7 +80,7 @@
           
             <!-- Submit button -->
             <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-lg round btn-p">Save new course</button>
+            <button type="submit" id="newCourse" class="btn btn-primary btn-lg round btn-p">Save new course</button>
           </div>
           </form>
         </div>
