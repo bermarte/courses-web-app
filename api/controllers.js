@@ -7,7 +7,7 @@ const tv4 = require('tv4');
 
 const config = require('../config');
 const DATA_DIR = path.join(__dirname, '..', 'data', 'courses.json');
-const COURSES_SCHEMA = path.join(__dirname, '..', 'data', 'courses-schema.json');
+const COURSES_SCHEMA = require(path.join(__dirname, '..', 'data', 'courses-schema.js'));
 
 const controllers = {
     hello: (req, res) => {

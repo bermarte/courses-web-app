@@ -1,4 +1,4 @@
-{
+const COURSES_SCHEMA = {
     "title": "User Courses Input",
     "description": "Definition of input to create new course",
     "type": "object",
@@ -22,3 +22,5 @@
         "details"
     ]
 }
+
+module.exports = COURSES_SCHEMA
