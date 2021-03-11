@@ -1,5 +1,5 @@
 {
-  "nextId": 8,
+  "nextId": 16,
   "courses": [
     {
       "id": 1,
@@ -36,6 +36,45 @@
       "name": "Webpack",
       "place": "Online Course",
       "details": "Module bundler"
+    },
+    {
+      "name": "TEST 2",
+      "place": "new stuff",
+      "details": "Write something",
+      "id": 8
+    },
+    {
+      "name": "",
+      "place": "new stuff",
+      "details": "Write something",
+      "id": 9
+    },
+    {
+      "name": 1,
+      "place": "new stuff",
+      "details": "Write something",
+      "id": 10
+    },
+    {
+      "name": 1,
+      "details": "Write something",
+      "id": 11
+    },
+    {
+      "name": 1,
+      "id": 12
+    },
+    {
+      "name": 1,
+      "id": 13
+    },
+    {
+      "name": 1,
+      "id": 14
+    },
+    {
+      "name": 1,
+      "id": 15
     }
   ]
 }

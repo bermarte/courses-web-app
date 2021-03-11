@@ -7,7 +7,7 @@ const tv4 = require('tv4');
 
 const config = require('../config');
 const DATA_DIR = path.join(__dirname, '..', 'data', 'courses.json');
-const COURSES_SCHEMA = path.join(__dirname, '..', 'data', 'courses-schema.json');
+const COURSES_SCHEMA = require(path.join(__dirname, '..', 'data', 'courses-schema.js'));
 
 const controllers = {
     hello: (req, res) => {
@@ -48,8 +48,8 @@ const controllers = {
             newCourse.id = courses.nextId;
             courses.nextId++;
 
-            const isValid = tv4.validate(newCourse, COURSES_SCHEMA)
-            console.log(isValid);
+            const isValid = tv4.validate(newCourse, COURSES_SCHEMA, true)
+            console.log('tv4', isValid);
 
             if (!isValid) {
                 const error = tv4.error
