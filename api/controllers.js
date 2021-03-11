@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const Joi = require('joi');
 const tv4 = require('tv4');
 
 const config = require('../config');
