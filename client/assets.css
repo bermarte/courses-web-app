@@ -31,6 +31,17 @@ body{
 .btn-p{
     padding: 8px 120px;
 }
+/* new */
+#new{
+    background-color: #fff;
+}
+.img{
+    /* width: 513px; */
+}
+.borderless{
+    border: 0;
+}
+
 .footer{
     background-color: #F1C85C;
     min-height: 114px;
