@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'signikamedium';
-    src: url('./assets/fonts/ignika-medium-webfont.woff2') format('woff2'),
+    src: url('./assets/fonts/signika-medium-webfont.woff2') format('woff2'),
         url('./assets/fonts/signika-medium-webfont.woff') format('woff'),
-        url('./assets/fonts/usignika-medium.ttf') format('truetype');
+        url('./assets/fonts/signika-medium.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -58,9 +58,8 @@ body {
     padding: 8px 120px;
 }
 
-
-
 /* new */
+
 #new {
     background-color: #fff;
     min-width: 200px;
@@ -72,6 +71,34 @@ body {
 
 .empty {
     width: 160px;
+}
+
+/* card */
+.card-width {
+    min-height: 400px;
+}
+
+.card-round {
+    border-radius: 9px;
+}
+
+.card-color {
+    background-color: #F4E6B5
+}
+
+.font {
+    font-family: Signika;
+}
+
+.img-icon {
+    background-color: #F4E6B5;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 32px;
+    right: 32px;
 }
 
 @media all and (max-width:30em) {

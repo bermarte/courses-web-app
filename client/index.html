@@ -6,6 +6,8 @@
   <title>courses web-app</title>
 
   <!-- BOOTSTRAP THEME -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./assets.css">
 
@@ -16,7 +18,7 @@
 </head>
 
 <body>
-  <div class="container main-container mx-auto">
+  <div class="main-container mx-auto">
 
     <!-- header -->
     <div class="container mr-3 ml-3">
@@ -30,7 +32,7 @@
     </div>
 
     <!-- jumbotron -->
-     <div class="jumbotron bg-cover jumbotron-resize d-flex align-items-center justify-content-center">
+    <div class="jumbotron bg-cover jumbotron-resize d-flex align-items-center justify-content-center">
       <div class="container text-white min-width">
         <h1 class="disp-txt m-5 text-left">"An investment in knowledge always pays the best interest."</h1>
         <div class="m-5 text-right quote-m">Benjamin Franklin</div>
@@ -41,60 +43,43 @@
       </div>
     </div>
 
-    <!-- new item content -->
-    <div class="container mb-5 mt-5 align-content-center" id="new">
-      <div class="d-md-flex row">
-        <!-- left -->
-        <div class=" borderless col w-xl-50">
+    <!-- items -->
+    <div class="mb-5 mt-5 align-content-center container-fluid">
+      <div class="row" id="items">
+
+        <div class="borderless d-none d-sm-none d-md-block col-12 col-sm-12 col-md-6 col-xl-6 my-auto mx-auto m-0 p-0">
           <img src="./assets/bg-bibleStudyTable.png" class="card-img img align-self-center" alt="image">
         </div>
+
         <!-- right -->
-        <div class="col w-xl-50 m-5">
+        <div class="col col-12 col-sm-12 col-md-6 col-xl-6 mx-auto">
           <h2 class="text-center text-primary">Add new course</h2>
-          <form>  
+          <div class="container mx-auto">
+            <form>
 
-            <div class="form-outline mb-1">
-              <input type="text" id="name" class="form-control" placeholder="course name" />
-              <label class="form-label" for="name"></label>
-            </div>
+              <div class="form-outline mb-1">
+                <input type="text" id="name" class="form-control" placeholder="course name" />
+                <label class="form-label" for="name"></label>
+              </div>
 
-            <div class="form-outline mb-1">
-              <input type="text" id="location" class="form-control" placeholder="course location" />
-              <label class="form-label" for="location"></label>
-            </div>
+              <div class="form-outline mb-1">
+                <input type="text" id="location" class="form-control" placeholder="course location" />
+                <label class="form-label" for="location"></label>
+              </div>
 
-            <div class="form-outline mb-1">
-              <input type="text" id="details" class="form-control" placeholder="course details" />
-              <label class="form-label" for="details"></label>
-            </div>
-          
-            <div class="text-center pb-4">
-            <button type="submit" id="newCourse" class="btn btn-primary btn-lg round btn-p">Save new course</button>
+              <div class="form-outline mb-1">
+                <input type="text" id="details" class="form-control" placeholder="course details" />
+                <label class="form-label" for="details"></label>
+              </div>
+
+              <div class="text-center pb-4">
+                <button type="submit" id="newCourse" class="btn btn-primary btn-lg round btn-p">Save new course</button>
+              </div>
+            </form>
           </div>
-          </form>
-        </div> 
+        </div>
       </div>
-
     </div>
-<!-- CARDS -->
-    <div id="cards">
-      
-      <img src="../client/assets/online-course.png" alt="online course" id="logo" class="logo-course">
-      <div class= "name" >
-        <p></p>
-
-      </div>
-  <li>
-  
-      
-      <div class= "icons" ></div>
-  </div>
-  </li>
-  </div>
-
-
-    <!-- items -->
-    <div id="items"></div>
 
     <!-- footer -->
     <footer class="text-center bg-primary d-flex align-items-center justify-content-between p-4">
