@@ -1,4 +1,4 @@
-{
+const COURSES_SCHEMA = {
     "title": "User Courses Input",
     "description": "Definition of input to create new course",
     "type": "object",
@@ -7,13 +7,18 @@
             "type": "number"
         },
         "name": {
-            "type": "string"
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 30
         },
         "place": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 30
         },
         "details": {
-            "type": "string"
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 30
         }
     },
     "required": [
@@ -22,3 +27,6 @@
         "details"
     ]
 }
+
+module.exports = COURSES_SCHEMA
+
