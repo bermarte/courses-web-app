@@ -16,8 +16,14 @@ _A User can see the [repository](https://github.com/LiubovPlugar/courses-web-app
 
 - Created a new repository
 - Clone the repository
-- Write initial, basic README
 - Start the development strategy
 - Prepare a project board
-- Push the changes to GitHub
 - Turn on GitHub Pages
+- Invite collaborators
+
+## 1. Data
+
+- Added courses.json
+- Added courses-schema.json
+
+## 2. 
