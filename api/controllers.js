@@ -47,8 +47,8 @@ const controllers = {
             newCourse.id = courses.nextId;
             courses.nextId++;
 
-            const isValid = tv4.validate(newCourse, COURSES_SCHEMA)
-            console.log(isValid);
+            const isValid = tv4.validate(newCourse, COURSES_SCHEMA, true)
+            console.log('tv4', isValid);
 
             if (!isValid) {
                 const error = tv4.error
