@@ -7,13 +7,18 @@ const COURSES_SCHEMA = {
             "type": "number"
         },
         "name": {
-            "type": "string"
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 30
         },
         "place": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 30
         },
         "details": {
-            "type": "string"
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 30
         }
     },
     "required": [
@@ -24,3 +29,4 @@ const COURSES_SCHEMA = {
 }
 
 module.exports = COURSES_SCHEMA
+
