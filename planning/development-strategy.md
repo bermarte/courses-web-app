@@ -30,8 +30,8 @@ _A User can see the [repository](https://github.com/LiubovPlugar/courses-web-app
 
 As a user when I visit a website I want to see what the website is about and what I can do with it
 
-HTML
-CSS
+- HTML
+- CSS
 
 ## 3. Get a course 
 
