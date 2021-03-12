@@ -19,15 +19,19 @@ body {
 }
 
 .main-container {
-    width: 1280px;
+    max-width: 1280px;
     background-color: #fff;
 }
 
 .bg-cover {
     background-image: url("./assets/graduation.png");
     background-repeat: no-repeat;
-    background-size: contain, cover;
     background-position: center;
+    background-color: #fff;
+}
+
+.disp-txt {
+    font-size: calc(16px + 1.8vw);
 }
 
 .jumbotron-resize {
@@ -36,6 +40,10 @@ body {
 
 .quote-m {
     margin-right: 120px;
+}
+
+.min-width {
+    min-width: 370px;
 }
 
 .row-resize {
@@ -50,24 +58,32 @@ body {
     padding: 8px 120px;
 }
 
+
+
 /* new */
 #new {
     background-color: #fff;
-}
-
-.img {
-    /* width: 513px; */
+    min-width: 200px;
 }
 
 .borderless {
     border: 0;
 }
 
-.footer {
-    background-color: #F1C85C;
-    min-height: 114px;
-}
-
 .empty {
     width: 160px;
+}
+
+@media all and (max-width:30em) {
+    .btn-p {
+        padding: 3px 26px;
+    }
+
+    .jumbotron-resize {
+        min-height: 360px;
+    }
+
+    .img {
+        display: none;
+    }
 }

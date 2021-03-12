@@ -23,17 +23,17 @@
       <ul class="nav justify-content-end">
         <li class="nav-item">
           <a class="nav-link active" href="https://hackyourfuture.be/" target="_blank">
-            <img src="./assets/hyf.svg" alt="HYF" width="60px">
+            <img src="./assets/hyf.svg" alt="HYF" width="60">
           </a>
         </li>
       </ul>
     </div>
 
     <!-- jumbotron -->
-    <div class="jumbotron bg-cover jumbotron-resize d-flex align-items-center justify-content-center">
-      <div class="container text-white">
-        <h1 class="display-3 m-6 text-left">"An investment in knowledge always pays the best interest."</h1>
-        <div class="m-6 text-right quote-m"> - Benjamin Franklin</div>
+     <div class="jumbotron bg-cover jumbotron-resize d-flex align-items-center justify-content-center">
+      <div class="container text-white min-width">
+        <h1 class="disp-txt m-5 text-left">"An investment in knowledge always pays the best interest."</h1>
+        <div class="m-5 text-right quote-m">Benjamin Franklin</div>
 
         <div class="container d-flex justify-content-center">
           <button type="button" class="btn btn-primary btn-lg round btn-p">Course List</button>
@@ -42,58 +42,46 @@
     </div>
 
     <!-- new item content -->
-    <div class="container mb-5 mt-5" id="new">
-      <div class="d-flex row">
+    <div class="container mb-5 mt-5 align-content-center" id="new">
+      <div class="d-md-flex row">
         <!-- left -->
-        <div class=" borderless col w-50">
-          <img src="./assets/bg-bibleStudyTable.png" class="card-img img" alt="image">
+        <div class=" borderless col w-xl-50">
+          <img src="./assets/bg-bibleStudyTable.png" class="card-img img align-self-center" alt="image">
         </div>
         <!-- right -->
-        <div class="col w-50 m-5">
-          <h2 class="text-center text-primary"">Add new course</h2>
+        <div class="col w-xl-50 m-5">
+          <h2 class="text-center text-primary">Add new course</h2>
           <form>  
-            <!-- input -->
+
             <div class="form-outline mb-1">
               <input type="text" id="name" class="form-control" placeholder="course name" />
               <label class="form-label" for="name"></label>
             </div>
 
-            <!-- hide id field
-               <div class="form-outline mb-1">
-              <input type="text" id="id" class="form-control" placeholder="course id" />
-              <label class="form-label" for="id"></label>
-            </div>
-            -->
-
-            <!-- input -->
             <div class="form-outline mb-1">
               <input type="text" id="location" class="form-control" placeholder="course location" />
               <label class="form-label" for="location"></label>
             </div>
 
-
-            <!-- input -->
             <div class="form-outline mb-1">
               <input type="text" id="details" class="form-control" placeholder="course details" />
               <label class="form-label" for="details"></label>
             </div>
           
-            <!-- Submit button -->
-            <div class="text-center">
+            <div class="text-center pb-4">
             <button type="submit" id="newCourse" class="btn btn-primary btn-lg round btn-p">Save new course</button>
           </div>
           </form>
-        </div>
+        </div> 
       </div>
 
     </div>
 
     <!-- items -->
-    <container id="items"></container>
+    <div id="items"></div>
 
     <!-- footer -->
-    <footer class="footer text-center d-flex align-items-center justify-content-between">
-      <!-- Copyright -->
+    <footer class="text-center bg-primary d-flex align-items-center justify-content-between p-4">
       <div class="empty"></div>
       <div class="text-center">
         © 2021 Copyright
@@ -101,13 +89,12 @@
       <div class="justify-content-end d-flex flex-row justify-content-end">
         <div id="group" class="align-self-center">Group 1</div>
         <a class="nav-link active" href="https://github.com/LiubovPlugar/courses-web-app" target="_blank">
-          <img src="./assets/github.png" alt="github" width="30px">
+          <img src="./assets/github.png" alt="github" width="30">
         </a>
       </div>
     </footer>
 
   </div>
-
 
 </body>
 
