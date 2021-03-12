@@ -8,7 +8,8 @@
   <!-- BOOTSTRAP THEME -->
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./assets.css">
-
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Signika" />
+  
   <script type="module">
     import { init } from './app/init.js'
     window.onload = init;
@@ -32,11 +33,11 @@
     <!-- jumbotron -->
     <div class="jumbotron bg-cover jumbotron-resize d-flex align-items-center justify-content-center">
       <div class="container text-white">
-        <h1 class="display-3 m-6 text-left">"An investment in knowledge always pays the best interest."</h1>
-        <div class="m-6 text-right quote-m"> - Benjamin Franklin</div>
+        <h1 class="display-3 m-6 text-left font">"An investment in knowledge always pays the best interest."</h1>
+        <div class="m-6 text-right quote-m font"> - Benjamin Franklin</div>
 
         <div class="container d-flex justify-content-center">
-          <button type="button" class="btn btn-primary btn-lg round btn-p">Course List</button>
+          <button type="button" class="btn btn-primary btn-lg round btn-p font">Course List</button>
         </div>
       </div>
     </div>
@@ -50,18 +51,13 @@
         </div>
         <!-- right -->
         <div class="col w-50 m-5">
-          <h2 class="text-center text-primary"">Add new course</h2>
-          <form>  
+          <h2 class="text-center text-primary font">Add new course</h2>
+          <form>
             <!-- input -->
             <!-- input -->
-            <div class="form-outline mb-1">
+            <div class=" form-outline mb-1">
               <input type="text" id="name" class="form-control" placeholder="course name" />
               <label class="form-label" for="name"></label>
-            </div>
-
-            <div class="form-outline mb-1">
-              <input type="text" id="id" class="form-control" placeholder="course id" />
-              <label class="form-label" for="id"></label>
             </div>
 
             <!-- input -->
@@ -76,37 +72,63 @@
               <input type="text" id="details" class="form-control" placeholder="course details" />
               <label class="form-label" for="details"></label>
             </div>
-          
+
             <!-- Submit button -->
-            <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-lg round btn-p">Save new course</button>
-          </div>
+            <div class="text-center pb-4">
+              <button type="submit" class="btn btn-primary btn-lg round btn-p font">Save new course</button>
+            </div>
           </form>
         </div>
       </div>
 
     </div>
 
-    <!-- items -->
-    <container id="items"></container>
-
-    <!-- footer -->
-    <footer class="footer text-center d-flex align-items-center justify-content-between">
-      <!-- Copyright -->
-      <div class="empty"></div>
-      <div class="text-center">
-        © 2021 Copyright
+    <!-- CARDS-->
+    <div class="text-center font">
+      <h1>List of the courses</h1>
+    </div>
+    <div class="card card-width card-color card border-light round">
+      <div class="card-body text-center">
+        <h6 class="card-title text-right font">Course Id:</h6>
+        <div class="row ">
+          <div class="w-25 mx-auto">
+            <img class="img-thumbnail img-icon" src="../client/assets/online-course.png" >
+          </div>
+        </div>
+        <div class="btn-xs">
+          <button type="button" class="btn btn-primary btn round btn-p font">JavaScript</button>
+        </div>
+        <span>Details:</span>
+        <p class="font">Creates dynamic activity on your app.</p>
+        <div class="w-15 mx-auto d-flex justify-content-between">
+          <img class="img-thumbnail img-icon" src="../client/assets/information.png" width="50" height="15">
+          <img class="img-thumbnail img-icon" src="../client/assets/edit.png" width="50" height="15">
+          <img class="img-thumbnail img-icon" src="../client/assets/delete.png" width="50" height="15">
+        </div>
       </div>
-      <div class="justify-content-end d-flex flex-row justify-content-end">
-        <div id="group" class="align-self-center">Group 1</div>
-        <a class="nav-link active" href="https://github.com/LiubovPlugar/courses-web-app" target="_blank">
-          <img src="./assets/github.png" alt="github" width="30px">
-        </a>
-      </div>
-    </footer>
 
+    </div>
   </div>
 
+  <!-- items -->
+  <container id="items"></container>
+
+  <!-- footer -->
+  <footer class="footer text-center d-flex align-items-center justify-content-between main-container mx-auto">
+    <!-- Copyright -->
+    <div class="empty"></div>
+    <div class="text-center">
+      © 2021 Copyright
+    </div>
+    <div class="justify-content-end d-flex flex-row justify-content-end">
+      <div id="group" class="align-self-center">Group 1</div>
+      <a class="nav-link active" href="https://github.com/LiubovPlugar/courses-web-app" target="_blank">
+        <img src="./assets/github.png" alt="github" width="30px">
+      </a>
+    </div>
+  </footer>
+
+</div>
 
 </body>
 

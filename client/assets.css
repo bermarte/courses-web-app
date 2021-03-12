@@ -49,3 +49,20 @@ body{
 .empty{
     width: 160px;
 }
+
+.card-width {
+    width: 400px;
+}
+
+.card-color{
+    background-color: #F4E6B5
+}
+
+.font{
+    font-family: Signika;
+}
+
+.img-icon{
+    background-color: #F4E6B5;
+    border: none;
+}
