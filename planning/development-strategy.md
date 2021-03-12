@@ -26,4 +26,28 @@ _A User can see the [repository](https://github.com/LiubovPlugar/courses-web-app
 - Added courses.json
 - Added courses-schema.json
 
-## 2. 
+## 2. Client 
+
+As a user when I visit a website I want to see what the website is about and what I can do with it
+
+HTML
+CSS
+
+## 3. Get a course 
+
+As a user I want to be able to create a course
+
+- added routs
+- added controllers 
+
+## 4. Get list of courses 
+
+As a user I want to be able to see the list of all courses
+
+ ## 5.Edit a course 
+
+ As a user I want to be able to edit a course
+
+ ## 5.Delete a course 
+
+  As a user I want to be able to delete a course
