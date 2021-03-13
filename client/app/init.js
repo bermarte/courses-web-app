@@ -43,7 +43,7 @@ newCourse.addEventListener('click', (event) => {
     feedback.innerHTML = '';
   };
 
-  fetch('http://localhost:8080/api/courses/', requestOptions)
+  fetch('/api/courses/', requestOptions)
     .then(response => response.text())
     .then(result => {
       const feed = JSON.parse(result);
