@@ -13,12 +13,13 @@ const COURSES_SCHEMA = {
         },
         "place": {
             "type": "string",
+            "minLength": 3,
             "maxLength": 30
         },
         "details": {
             "type": "string",
             "minLength": 3,
-            "maxLength": 30
+            "maxLength": 60
         }
     },
     "required": [

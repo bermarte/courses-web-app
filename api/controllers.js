@@ -47,7 +47,7 @@ const controllers = {
             newCourse.id = courses.nextId;
             courses.nextId++;
 
-            const isValid = tv4.validate(newCourse, COURSES_SCHEMA, true)
+            const isValid = tv4.validate(newCourse, COURSES_SCHEMA)
             console.log('tv4', isValid);
 
             if (!isValid) {
@@ -71,6 +71,7 @@ const controllers = {
             fs.writeFile(DATA_DIR, newData, (err) => {
                 if (err) return res.status(500).send(err.message);
                 console.log('Data written to file');
+                res.send()
             });
 
         });

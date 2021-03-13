@@ -59,17 +59,17 @@
             <form>
 
               <div class="form-outline mb-1">
-                <input type="text" id="name" class="form-control" placeholder="course name" />
+                <input type="text" id="name" class="form-control" maxlength="30" placeholder="course name" />
                 <label class="form-label" for="name"></label>
               </div>
 
               <div class="form-outline mb-1">
-                <input type="text" id="location" class="form-control" placeholder="course location" />
-                <label class="form-label" for="location"></label>
+                <input type="text" id="place" class="form-control" maxlength="30" placeholder="course location" />
+                <label class="form-label" for="place"></label>
               </div>
 
               <div class="form-outline mb-1">
-                <input type="text" id="details" class="form-control" placeholder="course details" />
+                <input type="text" id="details" class="form-control" maxlength="60" placeholder="course details" />
                 <label class="form-label" for="details"></label>
               </div>
 
@@ -77,6 +77,9 @@
                 <button type="submit" id="newCourse" class="btn btn-primary btn-lg round btn-p">Save new course</button>
               </div>
             </form>
+
+            <!-- feedback -->
+            <h5 id="feedback" class="feedback text-center"></h5>
           </div>
         </div>
       </div>
