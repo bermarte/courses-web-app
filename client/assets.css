@@ -20,6 +20,7 @@ body {
 
 .main-container {
     max-width: 1280px;
+    min-width: 200px;
     background-color: #fff;
 }
 
@@ -77,6 +78,10 @@ body {
 .card-width {
     min-height: 400px;
 }
+
+.box{
+    box-model: border-box;
+  }
 
 .card-round {
     border-radius: 9px;
