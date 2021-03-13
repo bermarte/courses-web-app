@@ -49,14 +49,16 @@ newCourse.addEventListener('click', (event) => {
       const feed = JSON.parse(result);
       //if there's an error:
       try {
-        const { message } = feed.error;
+        const {
+          message
+        } = feed.error;
         feedback.classList.remove("green");
         feedback.classList.add("red");
-        feedback.innerHTML = message;
-        setTimeout(removeFeedback, 5000);
+        feedback.innerHTML = `<div class="d-flex justify-content-center flex-row"><div class="p-2 mx-2 align-self-center">${message}</div> <span class="err"></span></div>`;
+        setTimeout(removeFeedback, 7000);
       }
       //if data is saved
-      catch(e){
+      catch (e) {
         feedback.classList.remove("red");
         feedback.classList.add("green");
         feedback.innerHTML = "Data written to file";

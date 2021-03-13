@@ -109,6 +109,16 @@ body {
 .green {
     color: green;
 }
+.err{
+    background-image: url('./assets/exclamation-mark.png');
+    background-repeat: no-repeat;
+    display: inline;
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    vertical-align: middle;
+    line-height: normal;
+}
 
 @media all and (max-width:30em) {
     .btn-p {
