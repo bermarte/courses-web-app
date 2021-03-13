@@ -4,18 +4,69 @@ export const init = async () => {
   console.log(data);
 };
 
+const httpHeaders = new Headers({
+  'Content-Type': 'application/json'
+});
 
 
-//get data from form
-//do data validation
+let feedback = document.getElementById("feedback");
 const newCourse = document.getElementById('newCourse');
+
+//POST
 newCourse.addEventListener('click', (event) => {
   event.preventDefault();
-  const newData = {
-    name: document.getElementById("name").value,
-    location: document.getElementById("location").value,
-    details: document.getElementById("details").value
+
+  let name = document.getElementById("name").value;
+  let place = document.getElementById("place").value;
+  let details = document.getElementById("details").value;
+
+  //cast to numbers if possible
+  if (Number(name)) name = Number(name);
+  if (Number(place)) place = Number(place);
+  if (Number(details)) details = Number(details);
+
+  const formValues = {
+    name,
+    place,
+    details
   }
-  console.log(newData);
+
+  const raw = JSON.stringify(formValues);
+
+  const requestOptions = {
+    method: 'POST',
+    headers: httpHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+  const removeFeedback = () => {
+    feedback.innerHTML = '';
+  };
+
+  fetch('/api/courses/', requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      const feed = JSON.parse(result);
+      //if there's an error:
+      try {
+        const { message } = feed.error;
+        feedback.classList.remove("green");
+        feedback.classList.add("red");
+        feedback.innerHTML = message;
+        setTimeout(removeFeedback, 5000);
+      }
+      //if data is saved
+      catch(e){
+        feedback.classList.remove("red");
+        feedback.classList.add("green");
+        feedback.innerHTML = "Data written to file";
+        setTimeout(removeFeedback, 7000);
+      }
+
+    })
+    .catch(error => {
+      console.log('catch error', error);
+      feedback.innerHTML = 'error';
+    });
 
 });
