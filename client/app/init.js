@@ -1,8 +1,111 @@
 export const init = async () => {
-  const res = await fetch('/api');
+  const res = await fetch('/api/courses');
   const data = await res.json();
   console.log(data);
+  listOfCourses(data);
 };
+
+// List of courses array
+const listOfCourses = (arr) => {
+  const courseList = [...arr.courses]
+    .map(course => {
+      console.log(course);
+      const loadCourses = document.createElement('div');
+      loadCourses.classList.add('service');
+
+      const nameDiv = document.createElement('div');
+      nameDiv.classList.add('name');
+      loadCourses.appendChild(nameDiv);
+
+      const container = document.createElement('div');
+      nameDiv.appendChild(container);
+
+      const iconDiv = document.createElement('div');
+      iconDiv.classList.add('icon');
+      iconDiv.innerHTML = `<i class="fas fa-laptop-code"></i>`;
+      container.appendChild(iconDiv)
+
+      const nameHeader = document.createElement('h2');
+      nameHeader.innerHTML = course.name;
+      container.appendChild(nameHeader);
+
+      if (course.details === '' || course.details === undefined || course.details === null) {
+        const detailsHeader = document.createElement('h3');
+        detailsHeader.classList.add('details-header');
+        detailsHeader.innerHTML = 'Details: ';
+        const details = document.createElement('p');
+        details.classList.add('detailsInfo', 'display');
+        details.setAttribute('data-id', course.id);
+        details.innerHTML = 'Details for the current course are not provided';
+        nameDiv.appendChild(detailsHeader);
+        nameDiv.appendChild(details);
+
+      } else {
+        const detailsHeader = document.createElement('h3');
+        detailsHeader.classList.add('details-header');
+        detailsHeader.innerHTML = 'Details: ';
+        const details = document.createElement('p');
+        details.classList.add('detailsInfo', 'display');
+        details.setAttribute('data-id', course.id);
+        details.innerHTML = course.details;
+        nameDiv.appendChild(detailsHeader);
+        nameDiv.appendChild(details);
+      }
+      
+      const placeDiv = document.createElement('div');
+      nameDiv.appendChild(placeDiv);
+      
+   
+if(course.place === '' || course.place === undefined || course.place === null) {
+        const place = document.createElement('p');
+        place.innerHTML = ``;
+        placeDiv.appendChild(place);
+      }else{
+        const place = document.createElement('p');
+        place.innerHTML = `${course.place}`;
+       
+        placeDiv.appendChild(place);
+      }
+       
+      
+      const iconsDiv = document.createElement('div');
+      iconsDiv.classList.add('icons');
+      loadCourses.appendChild(iconsDiv);
+
+      const infoButton = document.createElement('div');
+      infoButton.classList.add('icon');
+      infoButton.innerHTML = `<i class="fas fa-info-circle"></i>`;
+      iconsDiv.appendChild(infoButton);
+      infoButton.onclick = () => handlers.getAllCourses(course); // handlers
+     
+
+      const editButton = document.createElement('div');
+      editButton.classList.add('icon');
+      editButton.innerHTML = `<i class="fas fa-edit"></i>`;
+      iconsDiv.appendChild(editButton);
+      editButton.onclick = () => handlers.editCourse(course); // handlers 
+
+      const deleteButton = document.createElement('div');
+      deleteButton.classList.add('icon');
+      deleteButton.innerHTML = `<i class="fas fa-trash-alt"></i>`;
+      iconsDiv.appendChild(deleteButton );
+      deleteButton.onclick = () => deleteCourse(course); // handlers
+
+      const li = document.createElement('li');
+      li.appendChild(loadCourses);
+  
+      return li;
+    }).reduce((all, next) => {
+      all.appendChild(next);
+      return all;
+    },
+    document.createElement('ul'));
+
+  const coursesList = document.getElementById('courses-list');
+  coursesList.innerHTML = '';
+  coursesList.appendChild(courseList);
+};
+
 
 const httpHeaders = new Headers({
   'Content-Type': 'application/json'
