@@ -10,7 +10,7 @@
     integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./assets.css">
-
+  <script src="https://kit.fontawesome.com/1f1918c2d9.js" crossorigin="anonymous"></script>
   <script type="module">
     import { init } from './app/init.js'
     window.onload = init;
@@ -37,9 +37,7 @@
         <h1 class="disp-txt m-5 text-left">"An investment in knowledge always pays the best interest."</h1>
         <div class="m-5 text-right quote-m">Benjamin Franklin</div>
 
-        <div class="container d-flex justify-content-center">
-          <button type="button" class="btn btn-primary btn-lg round btn-p">Course List</button>
-        </div>
+       
       </div>
     </div>
 
@@ -90,9 +88,17 @@
 
         </div>
       </div>
-
+      <div class="details-wrapper">
+      <div class="details">
+        <details >
+          <summary class='btn'>Courses list</summary>
+          <div id='courses-list'></div>
+        </details>
+      </div>
     </div>
-
+    
+    </div>
+ 
     <!-- footer -->
     <footer class="text-center bg-primary d-flex align-items-center justify-content-between p-4">
       <div class="empty"></div>
