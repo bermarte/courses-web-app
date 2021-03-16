@@ -126,12 +126,15 @@ courseList.addEventListener('click', () => {
             `            <div class="alert bg-primary card-round font courseName" role="alert">${cardName}</div>\n` +
             '        </div>\n' +
             '        <div class="d-flex flex-column bottom">\n' +
-            '            <h5 class="font-weight-bold">Details:</h5>\n' +
-            `            <p class="font courseDescription">${cardDetails}</p>\n` +
+
+            `            <div class= "detail" id="detail_${cardId}"><h5 class="font-weight-bold">Details:</h5>\n` +
+            `            <p class="font courseDescription">${cardDetails}</p></div>\n` +
+            
+           
             `            ${cardPlace}\n` +
             '            <div class="w-15 d-flex justify-content-between justify-content-center">\n' +
             '                <img class="img-thumbnail img-icon information" alt="information"\n' +
-            '                    src="./assets/information.png" width="50" height="15" role="button">\n' +
+            `                    src="./assets/information.png" width="50" height="15" role="button" onclick="document.getElementById('detail_${cardId}').style.display = 'block';" >\n` +
             '                <img class="img-thumbnail img-icon edit" alt="edit" src="./assets/edit.png"\n' +
             '                    width="50" height="15" role="button">\n' +
             '                <img class="img-thumbnail img-icon delete" alt="delete" src="./assets/delete.png"\n' +
