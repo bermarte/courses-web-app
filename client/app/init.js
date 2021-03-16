@@ -1,3 +1,6 @@
+'use strict';
+
+
 export const init = async () => {
   const res = await fetch('/api');
   const data = await res.json();
@@ -69,6 +72,84 @@ newCourse.addEventListener('click', (event) => {
     .catch(error => {
       console.log('catch error', error);
       feedback.innerHTML = 'error';
+    });
+
+});
+
+//GET
+const courseList = document.getElementById("courseList");
+courseList.addEventListener('click', () => {
+
+  const requestOptions = {
+    method: 'GET',
+    headers: httpHeaders,
+    redirect: 'follow'
+  };
+
+  fetch('/api/courses/', requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      try {
+        const parsed = JSON.parse(result);
+        console.log('hello', parsed);
+        const items = document.getElementById("items");
+
+        parsed.courses.forEach(item => {
+          const cardId = item.id;
+          const cardName = item.name;
+          const cardDetails = item.details;
+
+          //place is optional
+          let cardPlace = '';
+          if (item.place === ""){
+            
+          }
+          else{
+             cardPlace = `<p class="font coursePlace text-white bg-secondary card-round">${item.place}</p>`;
+          }
+
+          /*
+          card template: will join HTML to produce a single card in JS
+          */
+          let card = '<!-- card -->\n' +
+            '<div\n' +
+            '   class="card card-width col-12 col-sm-6 col-md-4 col-xl-3 card-color card border-light card-round mx-auto">\n' +
+            '    <div class="card-body text-center">\n' +
+            `        <h6 class="card-title text-right font pos-r">Course Id: <span class="courseId">${cardId}</span> </h6>\n` +
+            '        <div class="row">\n' +
+            '            <div class="w-25 mx-auto">\n' +
+            '                <img class="img-thumbnail img-icon border-0" alt="icon"\n' +
+            '                    src="./assets/online-course.png">\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="container mt-4">\n' +
+            `            <div class="alert bg-primary card-round font courseName" role="alert">${cardName}</div>\n` +
+            '        </div>\n' +
+            '        <div class="d-flex flex-column bottom">\n' +
+            '            <h5 class="font-weight-bold">Details:</h5>\n' +
+            `            <p class="font courseDescription">${cardDetails}</p>\n` +
+            `            ${cardPlace}\n` +
+            '            <div class="w-15 d-flex justify-content-between justify-content-center">\n' +
+            '                <img class="img-thumbnail img-icon information" alt="information"\n' +
+            '                    src="./assets/information.png" width="50" height="15" role="button">\n' +
+            '                <img class="img-thumbnail img-icon edit" alt="edit" src="./assets/edit.png"\n' +
+            '                    width="50" height="15" role="button">\n' +
+            '                <img class="img-thumbnail img-icon delete" alt="delete" src="./assets/delete.png"\n' +
+            '                    width="50" height="15" role="button">\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '</div>'
+          items.innerHTML += card;
+        });
+
+      } catch (e) {
+        console.log('error');
+      }
+
+    })
+    .catch(error => {
+      console.log(error);
     });
 
 });
