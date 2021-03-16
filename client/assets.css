@@ -88,7 +88,7 @@ body {
 }
 
 .font {
-    font-family: Signika;
+    font-family: signikamedium;
 }
 
 .img-icon {
@@ -100,6 +100,11 @@ body {
     bottom: 20px;
     left: 32px;
     right: 32px;
+}
+
+.pos-r{
+    position: absolute;
+    right: 20px;
 }
 
 /* feedback */
