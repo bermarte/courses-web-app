@@ -1,5 +1,7 @@
 'use strict';
 
+//import { raw } from "body-parser";
+
 
 export const init = async () => {
   const res = await fetch('/api');
@@ -24,6 +26,10 @@ resetForm();
 
 let feedback = document.getElementById("feedback");
 const newCourse = document.getElementById('newCourse');
+
+const removeFeedback = () => {
+  feedback.innerHTML = '';
+};
 
 //POST
 newCourse.addEventListener('click', (event) => {
@@ -51,9 +57,6 @@ newCourse.addEventListener('click', (event) => {
     headers: httpHeaders,
     body: raw,
     redirect: 'follow'
-  };
-  const removeFeedback = () => {
-    feedback.innerHTML = '';
   };
 
   fetch('/api/courses/', requestOptions)
@@ -92,7 +95,7 @@ newCourse.addEventListener('click', (event) => {
 
 });
 
-//GET
+//GET all cards
 const courseList = document.getElementById("courseList");
 courseList.addEventListener('click', () => {
 
@@ -145,7 +148,7 @@ courseList.addEventListener('click', () => {
             '                <img class="img-thumbnail img-icon information" alt="information"\n' +
             `                    src="./assets/information.png" width="50" height="15" role="button" onclick="toggleInfo(${cardId})" >\n` +
             '                <img class="img-thumbnail img-icon edit" alt="edit" src="./assets/edit.png"\n' +
-            '                    width="50" height="15" role="button">\n' +
+            `                    width="50" height="15" role="button" onclick="editCard(${cardId})">\n` +
             '                <img class="img-thumbnail img-icon delete" alt="delete" src="./assets/delete.png"\n' +
             `                    width="50" height="15" role="button" onclick="deleteItem(${cardId})">\n` +
             '            </div>\n' +
@@ -192,6 +195,8 @@ window.deleteItem = function (id) {
       feedback.classList.add("green");
       feedback.innerHTML = "Item removed";
       console.log(result);
+      //remove message
+      setTimeout(removeFeedback, 7000);
       /*send get courses
       reload cards */
       simulateClick(courseList);
@@ -206,4 +211,80 @@ window.deleteItem = function (id) {
 window.toggleInfo = function(id){
   const info = document.getElementById(`detail_${id}`);
   info.style.display == "block" ? info.style.display = "none" : info.style.display = "block"; 
+}
+
+//GET single card by id
+window.editCard = function (id) {
+
+  const requestOptions = {
+    method: 'GET',
+    headers: httpHeaders,
+    redirect: 'follow'
+  };
+  fetch(`/api/courses/${id}`, requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      const parsed = JSON.parse(result);
+
+      //fill form by id
+      document.getElementById("title").innerText = `Save course with id ${parsed.id}`;
+      document.getElementById("name").value = parsed.name;
+      document.getElementById("place").value = parsed.place;
+      document.getElementById("details").value =  parsed.details;
+      //remove submit button
+      if (document.getElementById("newCourse")) {
+          
+        const btnContainer = document.getElementById("btnContainer");
+          
+          btnContainer.removeChild(newCourse);
+          
+          //add edit button 
+          const node = document.createElement("BUTTON");       
+          node.classList.add("btn","btn-primary","btn-lg","round", "btn-p");
+          node.setAttribute("id", "editCourse");     
+          const textnode = document.createTextNode("Save course");        
+          node.appendChild(textnode);     
+          document.getElementById("btnContainer").appendChild(node);
+
+          //add event Listener
+          activateEdit(parsed.id);
+      }
+      
+      //console.log(parsed, raw);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+};
+
+//PUT single card by id
+function activateEdit(id){
+  const editCourse = document.getElementById("editCourse");
+  editCourse.addEventListener('click', (event) => {
+    event.preventDefault();
+    const formValues = {
+      name: document.getElementById("name").value,
+      place: document.getElementById("name").value,
+      details: document.getElementById("details").value
+    }
+
+    console.log('form', formValues);
+    //put
+    const requestOptions = {
+      method: 'PUT',
+      headers: httpHeaders,
+      body: formValues,
+      redirect: 'follow'
+    };
+    fetch(`/api/courses/${id}`, requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log('from put', result);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    
+  });
 }
