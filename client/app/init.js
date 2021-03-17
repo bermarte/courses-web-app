@@ -143,7 +143,7 @@ courseList.addEventListener('click', () => {
             `            ${cardPlace}\n` +
             '            <div class="w-15 d-flex justify-content-between justify-content-center">\n' +
             '                <img class="img-thumbnail img-icon information" alt="information"\n' +
-            `                    src="./assets/information.png" width="50" height="15" role="button" onclick="document.getElementById('detail_${cardId}').style.display = 'block';" >\n` +
+            `                    src="./assets/information.png" width="50" height="15" role="button" onclick="toggleInfo(${cardId})" >\n` +
             '                <img class="img-thumbnail img-icon edit" alt="edit" src="./assets/edit.png"\n' +
             '                    width="50" height="15" role="button">\n' +
             '                <img class="img-thumbnail img-icon delete" alt="delete" src="./assets/delete.png"\n' +
@@ -201,3 +201,9 @@ window.deleteItem = function (id) {
     });
 
 };
+
+//toggle card Info
+window.toggleInfo = function(id){
+  const info = document.getElementById(`detail_${id}`);
+  info.style.display == "block" ? info.style.display = "none" : info.style.display = "block"; 
+}
