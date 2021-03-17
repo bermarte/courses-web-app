@@ -94,9 +94,7 @@ const postNewCard =
 
 }
 
-newCourse.addEventListener('click', postNewCard );
-
-
+newCourse.addEventListener('click', postNewCard);
 
 //GET all cards
 const courseList = document.getElementById("courseList");
@@ -228,7 +226,6 @@ window.editCard = function (id) {
     .then(response => response.text())
     .then(result => {
       const parsed = JSON.parse(result);
-
       //fill form by id
       document.getElementById("title").innerText = `Save course with id ${parsed.id}`;
       document.getElementById("name").value = parsed.name;
@@ -237,20 +234,18 @@ window.editCard = function (id) {
       //remove submit button
       if (document.getElementById("newCourse")) {
           
+        console.log('newCourse exists', newCourse);
         const btnContainer = document.getElementById("btnContainer");
-          
-          btnContainer.removeChild(newCourse);
-          
-          //add edit button 
-          const node = document.createElement("BUTTON");       
-          node.classList.add("btn","btn-primary","btn-lg","round", "btn-p");
-          node.setAttribute("id", "editCourse");     
-          const textnode = document.createTextNode("Save course");        
-          node.appendChild(textnode);     
-          document.getElementById("btnContainer").appendChild(node);
-
-          //add event Listener
-          activateEdit(parsed.id);
+        btnContainer.removeChild(document.getElementById("newCourse"));
+        //add edit button 
+        const node = document.createElement("BUTTON");       
+        node.classList.add("btn","btn-primary","btn-lg","round", "btn-p");
+        node.setAttribute("id", "editCourse");     
+        const textnode = document.createTextNode("Save course");        
+        node.appendChild(textnode);     
+        document.getElementById("btnContainer").appendChild(node);
+        //add event Listener
+        activateEdit(parsed.id);
       }
 
     })
@@ -305,9 +300,15 @@ function activateEdit(id){
         const textnode = document.createTextNode("Save new course");        
         node.appendChild(textnode);     
         document.getElementById("btnContainer").appendChild(node);
-        //once created we can use it as a DOM element and readd the event listener to it
+        //once created we can use it as a DOM element and add the event listener to it one more time
         const newCourse = document.getElementById("newCourse");
         newCourse.addEventListener('click', postNewCard );
+        //send a message on screen
+        feedback.classList.remove("red");
+        feedback.classList.add("green");
+        feedback.innerHTML = "Card saved";
+        //remove message
+        setTimeout(removeFeedback, 7000);
 
       })
       .catch(error => {

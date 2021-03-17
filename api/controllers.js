@@ -51,16 +51,16 @@ const controllers = {
             console.log('tv4', isValid);
 
             if (!isValid) {
-                const error = tv4.error
-                console.error(error)
+                const error = tv4.error;
+                console.error(error);
 
                 res.status(400).json({
                     error: {
                         message: error.message,
                         dataPath: error.dataPath
                     }
-                })
-                return
+                });
+                return;
             }
 
             courses.courses.push(newCourse);
@@ -71,7 +71,7 @@ const controllers = {
             fs.writeFile(DATA_DIR, newData, (err) => {
                 if (err) return res.status(500).send(err.message);
                 console.log('Data written to file');
-                res.send()
+                res.send();
             });
 
         });
@@ -80,7 +80,7 @@ const controllers = {
     //PUT edit course
 
     editCourse: (req, res, next) => {
-        console.log('edit course')
+        console.log('edit course');
         fs.readFile(DATA_DIR, 'utf-8', (err, data) => {
             if (err) return res.status(500).send(err.message);
             const courses = JSON.parse(data);
@@ -88,15 +88,15 @@ const controllers = {
 
             if (!course) res.status(404).send('The course with the given ID was not found!');
             course.name = req.body.name;
-            course.place = req.body.place,
-                course.details = req.body.details
+            course.place = req.body.place;
+            course.details = req.body.details;
 
             const isValid = tv4.validate(course, COURSES_SCHEMA)
             console.log(isValid);
 
             if (!isValid) {
-                const error = tv4.error
-                console.error(error)
+                const error = tv4.error;
+                console.error(error);
 
                 res.status(400).json({
                     error: {
@@ -125,7 +125,7 @@ const controllers = {
     listCourses: (req, res, next) => {
         console.log('get courses')
         fs.readFile(DATA_DIR, 'utf8', (err, data) => {
-            console.log('list of courses')
+            console.log('list of courses');
             if (err)
                 next(err);
             return;
