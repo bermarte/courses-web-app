@@ -1,7 +1,5 @@
 'use strict';
 
-//import { raw } from "body-parser";
-
 
 export const init = async () => {
   const res = await fetch('/api');
@@ -32,7 +30,8 @@ const removeFeedback = () => {
 };
 
 //POST
-newCourse.addEventListener('click', (event) => {
+const postNewCard =
+(event) => {
   event.preventDefault();
 
   let name = document.getElementById("name").value;
@@ -93,7 +92,11 @@ newCourse.addEventListener('click', (event) => {
       feedback.innerHTML = 'error';
     });
 
-});
+}
+
+newCourse.addEventListener('click', postNewCard );
+
+
 
 //GET all cards
 const courseList = document.getElementById("courseList");
@@ -193,7 +196,7 @@ window.deleteItem = function (id) {
     .then(result => {
       feedback.classList.remove("red");
       feedback.classList.add("green");
-      feedback.innerHTML = "Item removed";
+      feedback.innerHTML = "Card removed";
       console.log(result);
       //remove message
       setTimeout(removeFeedback, 7000);
@@ -249,8 +252,7 @@ window.editCard = function (id) {
           //add event Listener
           activateEdit(parsed.id);
       }
-      
-      //console.log(parsed, raw);
+
     })
     .catch(error => {
       console.log(error);
@@ -265,7 +267,7 @@ function activateEdit(id){
     event.preventDefault();
     const formValues = {
       name: document.getElementById("name").value,
-      place: document.getElementById("name").value,
+      place: document.getElementById("place").value,
       details: document.getElementById("details").value
     }
 
@@ -274,13 +276,39 @@ function activateEdit(id){
     const requestOptions = {
       method: 'PUT',
       headers: httpHeaders,
-      body: formValues,
+      body: JSON.stringify(formValues),
       redirect: 'follow'
     };
     fetch(`/api/courses/${id}`, requestOptions)
       .then(response => response.text())
       .then(result => {
-        console.log('from put', result);
+        console.log('changed card', result);
+        /*
+        send get courses
+        reload cards */
+        simulateClick(courseList);
+        //empty form
+        resetForm();
+        //old text
+        document.getElementById("title").innerText = 'Add new course';
+
+        //remove the edit button
+        const btnContainer = document.getElementById("btnContainer");
+        const editCourse = document.getElementById("editCourse");    
+        btnContainer.removeChild(editCourse);
+
+        //add edit button 
+        const node = document.createElement("BUTTON");       
+        node.classList.add("btn","btn-primary","btn-lg","round", "btn-p");
+        node.setAttribute("id", "newCourse");
+        node.setAttribute("type", "submit");
+        const textnode = document.createTextNode("Save new course");        
+        node.appendChild(textnode);     
+        document.getElementById("btnContainer").appendChild(node);
+        //once created we can use it as a DOM element and readd the event listener to it
+        const newCourse = document.getElementById("newCourse");
+        newCourse.addEventListener('click', postNewCard );
+
       })
       .catch(error => {
         console.log(error);
