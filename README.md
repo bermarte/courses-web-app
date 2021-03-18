@@ -28,5 +28,5 @@ The main idea of this project is to practice and understand the concepts of back
 
 ### Screenshot
 <p align="center">
-  <img src="https://github.com/bermarte/courses-web-app/blob/main/planning/screenshot.png" alt="screenshot" width="800">
+  <img src="https://github.com/bermarte/courses-web-app/blob/master/planning/screenshot.png" alt="screenshot" width="600">
 </p>
