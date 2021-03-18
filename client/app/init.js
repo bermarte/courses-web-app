@@ -242,7 +242,6 @@ window.editCard = function (id) {
       //remove submit button
       if (document.getElementById("newCourse")) {
 
-        console.log('newCourse exists', newCourse);
         const btnContainer = document.getElementById("btnContainer");
         btnContainer.removeChild(document.getElementById("newCourse"));
         //add edit button 
