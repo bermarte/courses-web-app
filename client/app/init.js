@@ -220,6 +220,10 @@ window.toggleInfo = function (id) {
 
 //GET single card by id
 window.editCard = function (id) {
+  //scroll to the form
+  document
+  .getElementById('title')
+  .scrollIntoView({ behavior: 'smooth' });
 
   const requestOptions = {
     method: 'GET',
