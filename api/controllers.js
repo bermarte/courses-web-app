@@ -104,7 +104,7 @@ const controllers = {
                         dataPath: error.dataPath
                     }
                 })
-                return
+                return;
             }
 
             res.send(course);

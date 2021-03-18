@@ -31,74 +31,74 @@ const removeFeedback = () => {
 
 //POST
 const postNewCard =
-(event) => {
-  event.preventDefault();
+  (event) => {
+    event.preventDefault();
 
-  let name = document.getElementById("name").value;
-  let place = document.getElementById("place").value;
-  let details = document.getElementById("details").value;
+    let name = document.getElementById("name").value;
+    let place = document.getElementById("place").value;
+    let details = document.getElementById("details").value;
 
-  //cast to numbers if possible
-  if (Number(name)) name = Number(name);
-  if (Number(place)) place = Number(place);
-  if (Number(details)) details = Number(details);
+    //cast to numbers if possible
+    if (Number(name)) name = Number(name);
+    if (Number(place)) place = Number(place);
+    if (Number(details)) details = Number(details);
 
-  const formValues = {
-    name,
-    place,
-    details
+    const formValues = {
+      name,
+      place,
+      details
+    }
+
+    const raw = JSON.stringify(formValues);
+
+    const requestOptions = {
+      method: 'POST',
+      headers: httpHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch('/api/courses/', requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        const feed = JSON.parse(result);
+        //there's an error:
+        try {
+          const {
+            message
+          } = feed.error;
+          feedback.classList.remove("green");
+          feedback.classList.add("red");
+          feedback.innerHTML = `<div class="d-flex justify-content-center flex-row"><div class="p-2 mx-2 align-self-center">${message}</div> <span class="err"></span></div>`;
+          setTimeout(removeFeedback, 7000);
+        }
+        //data is saved
+        catch (e) {
+          feedback.classList.remove("red");
+          feedback.classList.add("green");
+          feedback.innerHTML = "Data written to file";
+          setTimeout(removeFeedback, 7000);
+          //empty form once post is done
+          resetForm();
+          /*
+          reload cards if cards are visible
+          */
+          if (cardsVisible) simulateClick(courseList);
+        }
+
+      })
+      .catch(error => {
+        console.log('catch error', error);
+        feedback.innerHTML = 'error';
+      });
+
   }
-
-  const raw = JSON.stringify(formValues);
-
-  const requestOptions = {
-    method: 'POST',
-    headers: httpHeaders,
-    body: raw,
-    redirect: 'follow'
-  };
-
-  fetch('/api/courses/', requestOptions)
-    .then(response => response.text())
-    .then(result => {
-      const feed = JSON.parse(result);
-      //there's an error:
-      try {
-        const {
-          message
-        } = feed.error;
-        feedback.classList.remove("green");
-        feedback.classList.add("red");
-        feedback.innerHTML = `<div class="d-flex justify-content-center flex-row"><div class="p-2 mx-2 align-self-center">${message}</div> <span class="err"></span></div>`;
-        setTimeout(removeFeedback, 7000);
-      }
-      //data is saved
-      catch (e) {
-        feedback.classList.remove("red");
-        feedback.classList.add("green");
-        feedback.innerHTML = "Data written to file";
-        setTimeout(removeFeedback, 7000);
-        //empty form once post is done
-        resetForm();
-        /*
-        reload cards if cards are visible
-        */
-        if (cardsVisible) simulateClick(courseList);
-      }
-
-    })
-    .catch(error => {
-      console.log('catch error', error);
-      feedback.innerHTML = 'error';
-    });
-
-}
 
 newCourse.addEventListener('click', postNewCard);
 
 //GET all cards
-const courseList = document.getElementById("courseList");
-courseList.addEventListener('click', () => {
+
+const getCards =  () => {
 
   const requestOptions = {
     method: 'GET',
@@ -168,7 +168,11 @@ courseList.addEventListener('click', () => {
       console.log(error);
     });
 
-});
+}
+
+const courseList = document.getElementById("courseList");
+courseList.addEventListener('click', getCards);
+
 //send click
 const simulateClick = function (elem) {
   // Create our event (with options)
@@ -209,9 +213,9 @@ window.deleteItem = function (id) {
 };
 
 //toggle card Info
-window.toggleInfo = function(id){
+window.toggleInfo = function (id) {
   const info = document.getElementById(`detail_${id}`);
-  info.style.display == "block" ? info.style.display = "none" : info.style.display = "block"; 
+  info.style.display == "block" ? info.style.display = "none" : info.style.display = "block";
 }
 
 //GET single card by id
@@ -230,19 +234,19 @@ window.editCard = function (id) {
       document.getElementById("title").innerText = `Save course with id ${parsed.id}`;
       document.getElementById("name").value = parsed.name;
       document.getElementById("place").value = parsed.place;
-      document.getElementById("details").value =  parsed.details;
+      document.getElementById("details").value = parsed.details;
       //remove submit button
       if (document.getElementById("newCourse")) {
-          
+
         console.log('newCourse exists', newCourse);
         const btnContainer = document.getElementById("btnContainer");
         btnContainer.removeChild(document.getElementById("newCourse"));
         //add edit button 
-        const node = document.createElement("BUTTON");       
-        node.classList.add("btn","btn-primary","btn-lg","round", "btn-p");
-        node.setAttribute("id", "editCourse");     
-        const textnode = document.createTextNode("Save course");        
-        node.appendChild(textnode);     
+        const node = document.createElement("BUTTON");
+        node.classList.add("btn", "btn-primary", "btn-lg", "round", "btn-p");
+        node.setAttribute("id", "editCourse");
+        const textnode = document.createTextNode("Save course");
+        node.appendChild(textnode);
         document.getElementById("btnContainer").appendChild(node);
         //add event Listener
         activateEdit(parsed.id);
@@ -256,7 +260,7 @@ window.editCard = function (id) {
 };
 
 //PUT single card by id
-function activateEdit(id){
+function activateEdit(id) {
   const editCourse = document.getElementById("editCourse");
   editCourse.addEventListener('click', (event) => {
     event.preventDefault();
@@ -266,7 +270,6 @@ function activateEdit(id){
       details: document.getElementById("details").value
     }
 
-    console.log('form', formValues);
     //put
     const requestOptions = {
       method: 'PUT',
@@ -277,43 +280,67 @@ function activateEdit(id){
     fetch(`/api/courses/${id}`, requestOptions)
       .then(response => response.text())
       .then(result => {
-        console.log('changed card', result);
-        /*
-        send get courses
-        reload cards */
-        simulateClick(courseList);
-        //empty form
-        resetForm();
-        //old text
-        document.getElementById("title").innerText = 'Add new course';
+        //console.log('put', result);
+        const feed = JSON.parse(result);
+        try {
+          console.log('error', feed);
 
-        //remove the edit button
-        const btnContainer = document.getElementById("btnContainer");
-        const editCourse = document.getElementById("editCourse");    
-        btnContainer.removeChild(editCourse);
+           const {
+            message
+          } = feed.error;
+          feedback.classList.remove("green");
+          feedback.classList.add("red");
+          feedback.innerHTML = `<div class="d-flex justify-content-center flex-row"><div class="p-2 mx-2 align-self-center">${message}</div> <span class="err"></span></div>`;
+          setTimeout(removeFeedback, 7000);
 
-        //add edit button 
-        const node = document.createElement("BUTTON");       
-        node.classList.add("btn","btn-primary","btn-lg","round", "btn-p");
-        node.setAttribute("id", "newCourse");
-        node.setAttribute("type", "submit");
-        const textnode = document.createTextNode("Save new course");        
-        node.appendChild(textnode);     
-        document.getElementById("btnContainer").appendChild(node);
-        //once created we can use it as a DOM element and add the event listener to it one more time
-        const newCourse = document.getElementById("newCourse");
-        newCourse.addEventListener('click', postNewCard );
-        //send a message on screen
-        feedback.classList.remove("red");
-        feedback.classList.add("green");
-        feedback.innerHTML = "Card saved";
-        //remove message
-        setTimeout(removeFeedback, 7000);
+
+        
+        }
+        catch (e) {
+          console.log('ok', feed);
+          
+          //old text
+          document.getElementById("title").innerText = 'Add new course';
+
+          //remove the edit button
+          const btnContainer = document.getElementById("btnContainer");
+          const editCourse = document.getElementById("editCourse");
+          btnContainer.removeChild(editCourse);
+
+          //add edit button 
+          const node = document.createElement("BUTTON");
+          node.classList.add("btn", "btn-primary", "btn-lg", "round", "btn-p");
+          node.setAttribute("id", "newCourse");
+          node.setAttribute("type", "submit");
+          const textnode = document.createTextNode("Save new course");
+          node.appendChild(textnode);
+          document.getElementById("btnContainer").appendChild(node);
+          //once created we can use it as a DOM element and add the event listener to it one more time
+          const newCourse = document.getElementById("newCourse");
+          newCourse.addEventListener('click', postNewCard);
+
+          
+          //empty form
+          resetForm();
+
+          //send a message on screen
+          feedback.classList.remove("red");
+          feedback.classList.add("green");
+          feedback.innerHTML = "Card saved";
+          //remove message
+          setTimeout(removeFeedback, 7000);
+
+          /*
+          send get courses
+          reload cards */
+          //const courseList = document.getElementById('courseList');
+          simulateClick(courseList);
+        }
 
       })
       .catch(error => {
         console.log(error);
       });
-    
+
   });
 }
