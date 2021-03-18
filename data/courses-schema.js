@@ -29,5 +29,5 @@ const COURSES_SCHEMA = {
     ]
 }
 
-module.exports = COURSES_SCHEMA
+module.exports = COURSES_SCHEMA;
 
